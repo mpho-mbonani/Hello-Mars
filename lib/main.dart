@@ -32,7 +32,6 @@ class _MyAppState extends State<MyApp> {
 
   void _answerQuestion() {
     setState(() {_questionIndex = _questionIndex + 1;});
-    if (_questionIndex < questions.length) {}
   }
 
   @override
@@ -43,7 +42,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           backgroundColor: Colors.white,
         ),
-        body: Column(
+        body: _questionIndex < questions.length ? Column(
           children: [
             Question(
               questions[_questionIndex]['questionText'],
@@ -53,7 +52,7 @@ class _MyAppState extends State<MyApp> {
               return Answer(_answerQuestion, answer);
             }).toList()
           ],
-        ),
+        ) : Center(child: Text('Questionaire Complete')),
       ),
     );
   }
