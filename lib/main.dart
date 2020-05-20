@@ -2,6 +2,7 @@ import 'package:basics/answer.dart';
 import 'package:basics/quiz.dart';
 import 'package:flutter/material.dart';
 import './question.dart';
+import './result.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final questions = const [
+  final _questions = const [
     {
       'questionText': 'What\'s your favorite color?',
       'answers': ['black', 'red', 'green', 'white']
@@ -43,7 +44,11 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           backgroundColor: Colors.white,
         ),
-        body: _questionIndex < questions.length ? Quiz() : Center(child: Text('Questionaire Complete')),
+        body: _questionIndex < _questions.length ? 
+        Quiz(answerQuestion: _answerQuestion, 
+        questionIndex: _questionIndex
+        questions: _questions) : 
+        Result(),
       ),
     );
   }
