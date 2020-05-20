@@ -1,4 +1,5 @@
 import 'package:basics/answer.dart';
+import 'package:basics/quiz.dart';
 import 'package:flutter/material.dart';
 import './question.dart';
 
@@ -42,17 +43,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           backgroundColor: Colors.white,
         ),
-        body: _questionIndex < questions.length ? Column(
-          children: [
-            Question(
-              questions[_questionIndex]['questionText'],
-            ),
-            ...(questions[_questionIndex]['answers'] as List<String>)
-                .map((answer) {
-              return Answer(_answerQuestion, answer);
-            }).toList()
-          ],
-        ) : Center(child: Text('Questionaire Complete')),
+        body: _questionIndex < questions.length ? Quiz() : Center(child: Text('Questionaire Complete')),
       ),
     );
   }
